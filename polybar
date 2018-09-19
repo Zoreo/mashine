@@ -1,0 +1,449 @@
+;:set syn=dosini
+
+[global/wm]
+margin-top = 100
+margin-bottom = 100
+
+
+[colors]
+
+fg = ${xrdb:color7}
+modfg = ${xrdb:color3}
+alt = ${xrdb:color2}
+alt2 = ${xrdb:color1}
+bg = ${xrdb:color0}
+
+
+white = #d1d1d1
+gray = #585858
+black = #ff121212
+red = #c795ae
+blue = #95aec7
+yellow = #c7ae95
+green = #aec795
+
+
+[bar/top]
+bottom = false
+width = 100%
+height = 20
+
+fixed-center = true
+border-size = 0
+
+override-redirect = false
+;offset-x = 5%
+;offset-y = 1%
+radius = 0
+
+enable-ipc = false
+
+spacing = 0
+padding-right = 0
+module-margin-left = 0
+module-margin-right = 0
+
+modules-left = i3
+modules-center = date
+modules-right = 
+
+;Cores do painel
+;background transparent
+background = #00000000
+;Flatabulous Theme
+;background = #434343
+;Arc Theme
+;background = #2F343F
+;Numix Theme
+;background = #444444
+
+line-size = 5
+
+overline-size = 1
+;overline-color = #FF0000
+;Numix theme
+overline-color = E4524B
+
+;underline-size = 1
+;underline-color = #FF0000
+
+;border-bottom-size = 1
+;border-bottom-color = #BBBBBB
+
+
+;font-N = <fontconfig pattern>;<vertical offset>
+font-0 = micro:weight=regular:size=9;3
+font-1 = FontAwesome:size=10;3
+font-2 = IPAPgothic:weight=regular:size=10;3
+font-3 = FontAwesome 5 Free:size=10:style=Solid;3
+font-4 = unifont:size=10;3
+
+;Systray
+tray-position = right
+tray-padding = 1
+;tray-transparent = false
+tray-transparent = true
+;tray-background = #0000000
+tray-detached = true
+;tray-offset-x = -6
+;tray-offset-y = 3
+tray-offset-x = 1
+tray-offset-y = -1
+tray-scale = 1.0
+
+
+scroll-up = i3-gaps-wsnext
+scroll-down = i3-gaps-wsprev
+;click-left = i3-gaps-wsnext
+;click-right = i3-gaps-wsprev
+
+
+[bar/bottom]
+bottom = true
+dock = false
+wm-restack = i3
+
+fixed-center = true
+border-size = 0
+border-color = #00aaaaaa
+
+width = 100%
+height = 20
+
+override-redirect = true
+;offset-x = 5%
+;offset-y = 1%
+radius = 0
+
+enable-ipc = false
+
+spacing = 0
+padding-right = 0
+module-margin-left = 0
+module-margin-right = 0
+
+;modules-right = updates date menu0
+;modules-center = mpd
+;modules-left = cpu memory filesystem
+
+modules-right = xkeyboard wired-network wireless-network volume cpu memory menu0 
+modules-center = mpd
+modules-left = battery
+separator = " )  ( "
+
+background = #00ffffff
+foreground = ${colors.modfg}
+
+;overline-size = 2
+;overline-color = ${colors.white}
+;underline-size = 4
+;underline-color = ${colors.modfg}
+
+font-0 = micro:weight=regular:size=9;3
+font-1 = FontAwesome:size=10;3
+font-2 = IPAPgothic:weight=regular:size=10;3
+font-3 = FontAwesome 5 Free:size=10:style=Solid;3
+font-4 = unifont:size=10;3
+
+[module/volume]
+type = internal/volume
+
+format-volume = <label-volume> <bar-volume>
+label-volume = 
+label-volume-foreground = green
+label-font = 5
+
+#format-muted-prefix = "Mute "
+format-muted-foreground = green
+label-muted = 
+
+bar-volume-width = 10
+bar-volume-foreground-0 = #55aa55
+bar-volume-foreground-1 = #55aa55
+bar-volume-foreground-2 = #55aa55
+bar-volume-foreground-3 = #55aa55
+bar-volume-foreground-4 = #55aa55
+bar-volume-foreground-5 = #f5a70a
+bar-volume-foreground-6 = #ff5555
+bar-volume-gradient = true
+bar-volume-indicator = |
+bar-volume-indicator-font = 7
+bar-volume-fill = =
+bar-volume-fill-font = 2
+bar-volume-empty = =
+bar-volume-empty-font = 2
+bar-volume-empty-foreground = green
+
+[module/xwindow]
+type = internal/xwindow
+label = %title%
+label-maxlen = 30
+
+[module/mpd]
+type = internal/mpd
+
+host = 127.0.0.1
+port = 6600
+password =
+
+; Seconds to sleep between progressbar/song timer sync
+; Default: 1
+interval = 2
+
+[module/i3]
+type = internal/i3
+format = <label-mode> <label-state>
+index-sort = true
+
+label-focused = %index%
+label-focused-padding = 4
+label-focused-foreground = ${colors.bg}
+label-focused-background = ${colors.modfg}
+
+label-unfocused = %index%
+label-unfocused-padding = 3
+label-unfocused-background = #00ffffff
+
+label-urgent = %index%
+label-urgent-background = ${colors.alt}
+label-urgent-padding = 1
+
+label-visible = %index%
+label-visible-padding = 1
+
+[module/cpu]
+format-label = internal/cpu
+
+format = <label>
+
+ramp-coreload-0 = ▁
+ramp-coreload-1 = ▂
+ramp-coreload-2 = ▃
+ramp-coreload-3 = ▄
+ramp-coreload-4 = ▅
+ramp-coreload-5 = ▆
+ramp-coreload-6 = ▇
+ramp-coreload-7 = █
+ramp-coreload-underline = ${colors.fg}
+
+type = internal/cpu
+interval = 2
+label = " %percentage%%"
+
+;label-underline = ${colors.modfg}
+;label-background = ${colors.bg}
+;label-overline = ${colors.white}
+
+
+[module/memory]
+type = internal/memory
+interval = 2
+
+label = " %percentage_used%R%"
+;label = RAM %percentage_used%%
+;label-underline = ${colors.modfg}
+;label-foreground = ${colors.modfg}
+;label-background = ${colors.bg}
+
+
+[module/wlan]
+type = internal/network
+interface = enp2s0
+interval = 3.0
+
+format-connected-padding = 1
+format-disconnected-padding = 1
+
+format-connected = <label-connected>
+format-connected-underline = ${colors.white}
+format-disconnected-underline = ${colors.gray}
+
+label-connected = %essid%
+label-disconnected = 
+label-disconnected-foreground = ${colors.gray}
+
+
+[module/eth]
+type = internal/network
+interface = enp2s0
+interval = 3.0
+
+format-connected-padding = 1
+format-disconnected-padding = 1
+
+format-connected-underline = ${colors.white}
+format-disconnected-underline = ${colors.gray}
+
+label-connected =  
+label-disconnected = 
+label-disconnected-foreground = ${colors.gray}
+
+
+[module/date]
+type = internal/date
+date-alt = %A   %H:%M 
+date = %b/%d/%y   %H:%M
+interval = 5
+
+;format-underline = ${colors.modfg}
+;format-background = ${colors.bg}
+;format-foreground = ${colors.fg}
+;format-padding = 2
+
+[module/battery]
+type = internal/battery
+battery = BAT1
+adapter = ADP1
+full-at = 98
+
+format-charging = <animation-charging> <label-charging>
+format-charging-underline = ${colors.green}
+format-charging-padding = 1
+
+format-discharging = <ramp-capacity> <label-discharging>
+format-discharging-underline = ${colors.yellow}
+format-discharging-padding = 1
+
+format-full =   <label-full>
+format-full-underline = ${self.format-charging-underline}
+format-full-overline = ${self.format-charging-underline}
+format-full-padding = 1
+
+ramp-capacity-0 = 
+ramp-capacity-1 = 
+ramp-capacity-2 = 
+ramp-capacity-foreground = ${colors.white}
+
+animation-charging-0 = 
+animation-charging-1 = 
+animation-charging-2 = 
+animation-charging-3 = 
+animation-charging-4 = 
+animation-charging-foreground = ${colors.white}
+animation-charging-framerate = 500
+
+
+[module/temperature]
+type = internal/temperature
+; thermal-zone = 0
+warn-temperature = 65
+
+format = <label> 
+format-warn = <label-warn>
+
+label = TEMP %temperature%
+label-warn = TEMP %temperature%!!!
+
+
+[module/menu0]
+type = custom/menu
+
+format = <label-toggle> <menu>
+;format-underline = ${colors.white}
+format-padding = 0
+format-margin = 
+;format-background = 
+
+menu-0-0 = " shutdown "
+menu-0-0-exec = shutdown now
+menu-0-1 = " restart "
+menu-0-1-exec = shutdown -r now
+menu-0-2 = "  log out "
+menu-0-2-exec = i3-msg exit
+menu-0-3 =   cancel )
+
+
+
+label-open = >< )
+label-close =
+
+[module/xkeyboard]
+type = internal/xkeyboard
+blacklist-0 = num lock
+
+format-prefix = " "
+format-prefix-foreground = ${colors.white}
+format-prefix-underline = ${colors.red}
+
+label-layout = ( %layout%
+label-layout-underline = ${colors.blue}
+
+label-indicator-padding =
+label-indicator-margin = 
+label-indicator-background = ${colors.black}
+label-indicator-underline = ${colors.black}
+
+[module/wireless-network]
+type = internal/network
+interface = wlp4s0
+interval = 3.0
+ping-interval = 10
+
+format-connected = <ramp-signal> <label-connected>
+label-connected = %local_ip%
+label-disconnected =   nope
+label-disconnected-foreground = #66
+
+ramp-signal-0 = 
+ramp-signal-1 = 
+ramp-signal-2 = 
+ramp-signal-3 = 
+ramp-signal-4 = 
+
+animation-packetloss-0 = 
+animation-packetloss-0-foreground = #ffa64c
+animation-packetloss-1 = 
+animation-packetloss-1-foreground = ${bar/Bar.foreground}
+animation-packetloss-framerate = 500
+
+[module/wired-network]
+type = internal/network
+interface = enp0s25
+interval = 3.0
+
+label-connected = Wire: %{T3}%local_ip%%{T-}
+label-disconnected-foreground = #66
+
+[module/updates]
+type = custom/script
+
+;label-background = ${colors.bg}
+;label-padding = 0
+;label-underline = ${colors.modfg}
+
+exec = checkupdates | wc -l
+;tail = true
+interval = 60
+
+label  = " %output%"
+
+
+[module/cputemp]
+type = custom/script
+
+;label-background = ${colors.bg}
+;label-padding = 0
+;label-underline = ${colors.modfg}
+
+exec = sensors | grep --max-count=1 "CPU Temperature:" | awk '{print substr($0,22,2)}'
+;tail = true
+interval = 10
+
+label = " %output%°C"
+
+
+[module/gputemp]
+type = custom/script
+
+;label-background = ${colors.bg}
+;label-padding = 0
+;label-underline = ${colors.modfg}
+
+exec = nvidia-smi --query-gpu=temperature.gpu --format=csv,noheader,nounits
+;tail = true
+interval = 10
+
+label = "GPU %output%°C"
+
+
+; vim:ft=dosini%   
